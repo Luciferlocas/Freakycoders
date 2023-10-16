@@ -11,6 +11,10 @@
 </head>
 
 <body>
+    <div id="loader">
+        <div class="loader1"></div>
+    </div>
+
     <nav class="navbar">
         <span class="menu-btn fas fa-bars"></span>
         <a href="index.html" class="logo">
@@ -27,73 +31,177 @@
     </nav>
     <hr>
     <div class="platform">
-        <h1>Platform : Codeforces</h1>
+        <div class="head">
+            <h1>Competitions : </h1>
+            <form class="form">
+                <i class="fas fa-search"></i>
+                <input type="text" name="" id="search-name" placeholder="Search platform" onkeyup="search()">
+            </form>
+        </div>
+        <br>
         <hr>
-        <table id="code">
-            <tr>
-                <th>Name</th>
-                <th>Register</th>
-                <th>Start time</th>
-                <th>End time</th>
-                <th>Duration</th>
-                <th>Status</th>
-            </tr>
-            <tr>
-                <td>codeforces round 100(div 2)</td>
-                <td><a href="">Register</a></td>
-                <td>time</td>
-                <td>time</td>
-                <td>time</td>
-                <td>running</td>
-            </tr>
-            <tr>
-                <td>codeforces round 100(div 2)</td>
-                <td><a href="">Register</a></td>
-                <td>time</td>
-                <td>time</td>
-                <td>time</td>
-                <td>running</td>
-            </tr>
-            <tr>
-                <td>codeforces round 100(div 2)</td>
-                <td><a href="">Register</a></td>
-                <td>time</td>
-                <td>time</td>
-                <td>time</td>
-                <td>running</td>
-            </tr>
-            <tr>
-                <td>codeforces round 100(div 2)</td>
-                <td><a href="">Register</a></td>
-                <td>time</td>
-                <td>time</td>
-                <td>time</td>
-                <td>running</td>
-            </tr>
-            <tr>
-                <td>codeforces round 100(div 2)</td>
-                <td><a href="">Register</a></td>
-                <td>time</td>
-                <td>time</td>
-                <td>time</td>
-                <td>running</td>
-            </tr>
-            <tr>
-                <td>codeforces round 100(div 2)</td>
-                <td><a href="">Register</a></td>
-                <td>time</td>
-                <td>time</td>
-                <td>time</td>
-                <td>running</td>
-            </tr>
-            <tr>
-                <td>codeforces round 100(div 2)</td>
-                <td><a href="">Register</a></td>
-                <td>time</td>
-                <td>time</td>
-                <td>time</td>
-                <td>running</td>
-            </tr>
-        </table>
+        <div>
+            <table id="code">
+                <thead>
+                    <tr>
+                        <th>Platform</th>
+                        <th>Name</th>
+                        <th>Register</th>
+                        <th>Start time</th>
+                        <th>End time</th>
+                        <th>Duration</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody class="inform">
+                    <tr class="info">
+                        <td class="plat"></td>
+                        <td></td>
+                        <td><a href=""></a></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="info">
+                        <td class="plat">Codeforces</td>
+                        <td>codeforces round 100(div 2)</td>
+                        <td><a href="">Register</a></td>
+                        <td>time</td>
+                        <td>time</td>
+                        <td>time</td>
+                        <td>running</td>
+                    </tr>
+                    <tr class="info">
+                        <td class="plat">Codeforces</td>
+                        <td>codeforces round 100(div 2)</td>
+                        <td><a href="">Register</a></td>
+                        <td>time</td>
+                        <td>time</td>
+                        <td>time</td>
+                        <td>running</td>
+                    </tr>
+                    <tr class="info">
+                        <td class="plat">Codeforces</td>
+                        <td>codeforces round 100(div 2)</td>
+                        <td><a href="">Register</a></td>
+                        <td>time</td>
+                        <td>time</td>
+                        <td>time</td>
+                        <td>running</td>
+                    </tr>
+                    <tr class="info">
+                        <td class="plat">Codeforces</td>
+                        <td>codeforces round 100(div 2)</td>
+                        <td><a href="">Register</a></td>
+                        <td>time</td>
+                        <td>time</td>
+                        <td>time</td>
+                        <td>running</td>
+                    </tr>
+                    <tr class="info">
+                        <td class="plat">Codeforces</td>
+                        <td>codeforces round 100(div 2)</td>
+                        <td><a href="">Register</a></td>
+                        <td>time</td>
+                        <td>time</td>
+                        <td>time</td>
+                        <td>running</td>
+                    </tr>
+                    <tr class="info">
+                        <td class="plat">Codeforces</td>
+                        <td>codeforces round 100(div 2)</td>
+                        <td><a href="">Register</a></td>
+                        <td>time</td>
+                        <td>time</td>
+                        <td>time</td>
+                        <td>running</td>
+                    </tr>
+                    <tr class="info">
+                        <td class="plat">Codeforces</td>
+                        <td>codeforces round 100(div 2)</td>
+                        <td><a href="">Register</a></td>
+                        <td>time</td>
+                        <td>time</td>
+                        <td>time</td>
+                        <td>running</td>
+                    </tr>
+                    <tr class="info">
+                        <td class="plat">Codeforces</td>
+                        <td>codeforces round 100(div 2)</td>
+                        <td><a href="">Register</a></td>
+                        <td>time</td>
+                        <td>time</td>
+                        <td>time</td>
+                        <td>running</td>
+                    </tr>
+                    <tr class="info">
+                        <td class="plat">Codeforces</td>
+                        <td>codeforces round 100(div 2)</td>
+                        <td><a href="">Register</a></td>
+                        <td>time</td>
+                        <td>time</td>
+                        <td>time</td>
+                        <td>running</td>
+                    </tr>
+                    <tr class="info">
+                        <td class="plat">Codeforces</td>
+                        <td>codeforces round 100(div 2)</td>
+                        <td><a href="">Register</a></td>
+                        <td>time</td>
+                        <td>time</td>
+                        <td>time</td>
+                        <td>running</td>
+                    </tr>
+                    <tr class="info">
+                        <td class="plat">Codeforces</td>
+                        <td>codeforces round 100(div 2)</td>
+                        <td><a href="">Register</a></td>
+                        <td>time</td>
+                        <td>time</td>
+                        <td>time</td>
+                        <td>running</td>
+                    </tr>
+                    <tr class="info">
+                        <td class="plat">Codeforces</td>
+                        <td>codeforces round 100(div 2)</td>
+                        <td><a href="">Register</a></td>
+                        <td>time</td>
+                        <td>time</td>
+                        <td>time</td>
+                        <td>running</td>
+                    </tr>
+                    <tr class="info">
+                        <td class="plat">Codeforces</td>
+                        <td>codeforces round 100(div 2)</td>
+                        <td><a href="">Register</a></td>
+                        <td>time</td>
+                        <td>time</td>
+                        <td>time</td>
+                        <td>running</td>
+                    </tr>
+                    <tr class="info">
+                        <td class="plat">earth</td>
+                        <td>codeforces round 100(div 2)</td>
+                        <td><a href="">Register</a></td>
+                        <td>time</td>
+                        <td>time</td>
+                        <td>time</td>
+                        <td>running</td>
+                    </tr>
+                    <tr class="info">
+                        <td class="plat">Hacker</td>
+                        <td>codeforces round 100(div 2)</td>
+                        <td><a href="">Register</a></td>
+                        <td>time</td>
+                        <td>time</td>
+                        <td>time</td>
+                        <td>running</td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
     </div>
+
 </body>
