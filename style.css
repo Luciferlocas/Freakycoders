@@ -35,6 +35,7 @@ header {
   margin: 0 auto;
   justify-content: space-between;
 }
+
 .navbar .menu-btn {
   display: none;
   cursor: pointer;
@@ -45,11 +46,13 @@ header {
   font-size: 1.5rem;
   font-weight: 800;
 }
+
 .navbar .links {
   display: flex;
   gap: 35px;
   align-items: center;
 }
+
 .navbar .close-btn {
   position: absolute;
   right: 20px;
@@ -58,12 +61,15 @@ header {
   color: #000;
   cursor: pointer;
 }
+
 .navbar .links a {
   font-size: 1.3rem;
 }
+
 .navbar .links a:hover {
   font-size: 1.5rem;
 }
+
 .navbar .login-btn {
   border: none;
   outline: none;
@@ -76,7 +82,7 @@ header {
 
 .mid{
   position: absolute;
-  top: 60%;
+  top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);;
   text-align: center;
@@ -85,21 +91,28 @@ header {
 .greet h1{
   font-size: 4em;
   word-spacing: 0.125rem;
+  line-height: 1.5em;
 }
 
 .explore{
   display: flex;
+  justify-content: center;
   margin-top: 3em ;
   font-size: 2rem;
 }
 
 .practice{
   font-size: 2rem;
-  padding: 1em 2.2em;
+  padding: 1em 3em;
   border: 5px solid var(--text);
   border-radius: 1em;
   background-color: var(--secondary);
   margin: 0 3em;
+  cursor: pointer;
+}
+
+.icons{
+  padding-left: 3rem;
 }
 
 .practice:hover{
@@ -210,9 +223,20 @@ header {
   background-color: var(--primary);
 }
 
+.motive{
+  color: var(--primary);
+  text-align: center;
+  font-size: 3rem;
+  padding-top: 2em;
+  word-spacing: 4px;
+  letter-spacing: 1px;
+}
 
-
-
+.quote {
+  text-align: center;
+  padding-top: 1em;
+  word-spacing: 2px;
+}
 
 
 

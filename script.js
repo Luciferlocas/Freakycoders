@@ -1,3 +1,5 @@
+"use strict";
+
 const navbarMenu = document.querySelector(".navbar .links");
 const menuBtn = document.querySelector(".menu-btn");
 // const hideMenuBtn = navbarMenu.querySelector(".close-btn");
@@ -20,27 +22,28 @@ document.onreadystatechange = function () {
   }
 };
 
-const informationsAbout = document.getElementsByClassName(".inform");
-
-const request = new XMLHttpRequest();
-request.open("GET","https://kontests.net/api/v1/all");
-request.send();
-
-request.addEventListener("load", function(){
-  const data = JSON.parse(this.responseText);
-  console.log(data);
-  const html = `
-  <tr class="info">
-  <td class="plat">${data[0].site}</td>
-  <td>${data[0].name}</td>
-  <td><a href="${data[0].url}">Register</a></td>
-  <td>${data[0].start_time}</td>
-  <td>${data[0].end_time}</td>
-  <td>${data[0].duration}</td>
-  <td>${data[0].status}</td>
+fetch("https://kontests.net/api/v1/all")
+  .then((res) => {
+    return res.json();
+  })
+  .then((data) => {
+    let tableData = "";
+    data.map((values) => {
+      tableData += `<tr class="info">
+      <td class="plat">${values.site}</td>
+      <td>${values.name}</td>
+      <td><a target = "_blank" href="${values.url}">Register</a></td>
+      <td>${values.start_time}</td>
+      <td>${values.end_time}</td>
+      <td>${values.duration} s </td>
+      <td>${values.status}</td>
   </tr>`;
-  informationsAbout.insertAdjacentHTML("beforeend", html);
-});
+    });
+    document.getElementById("inform").innerHTML = tableData;
+  })
+  .catch((err) => {
+    // alert("Error fetching the API");
+  });
 
 const search = () => {
   const searchbox = document.getElementById("search-name").value.toUpperCase();
@@ -63,51 +66,51 @@ const search = () => {
   }
 };
 
-document.addEventListener('DOMContentLoaded', function () {
-  const content = document.querySelector('#code'); 
+document.addEventListener("DOMContentLoaded", function () {
+  const content = document.querySelector("#inform");
   const itemsPerPage = 6;
   let currentPage = 0;
-  const items = Array.from(content.getElementsByTagName('tr')).slice(1);
+  const items = Array.from(content.getElementsByTagName("tr")).slice(1);
 
-function showPage(page) {
-  const startIndex = page * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  items.forEach((item, index) => {
-    item.classList.toggle('hidden', index < startIndex || index >= endIndex);
-  });
-  updateActiveButtonStates();
-}
-
-function createPageButtons() {
-  const totalPages = Math.ceil(items.length / itemsPerPage);
-  const paginationContainer = document.createElement('div');
-  const paginationDiv = document.body.appendChild(paginationContainer);
-  paginationContainer.classList.add('pagination');
-
-  for (let i = 0; i < totalPages; i++) {
-    const pageButton = document.createElement('button');
-    pageButton.textContent = i + 1;
-    pageButton.addEventListener('click', () => {
-      currentPage = i;
-      showPage(currentPage);
-      updateActiveButtonStates();
+  function showPage(page) {
+    const startIndex = page * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    items.forEach((item, index) => {
+      item.classList.toggle("hidden", index < startIndex || index >= endIndex);
     });
+    updateActiveButtonStates();
+  }
+
+  function createPageButtons() {
+    const totalPages = Math.ceil(items.length / itemsPerPage);
+    const paginationContainer = document.createElement("div");
+    const paginationDiv = document.body.appendChild(paginationContainer);
+    paginationContainer.classList.add("pagination");
+
+    for (let i = 0; i < totalPages; i++) {
+      const pageButton = document.createElement("button");
+      pageButton.textContent = i + 1;
+      pageButton.addEventListener("click", () => {
+        currentPage = i;
+        showPage(currentPage);
+        updateActiveButtonStates();
+      });
 
       content.appendChild(paginationContainer);
       paginationDiv.appendChild(pageButton);
     }
-}
+  }
 
-function updateActiveButtonStates() {
-  const pageButtons = document.querySelectorAll('.pagination button');
-  pageButtons.forEach((button, index) => {
-    if (index === currentPage) {
-      button.classList.add('active');
-    } else {
-      button.classList.remove('active');
-    }
-  });
-}
+  function updateActiveButtonStates() {
+    const pageButtons = document.querySelectorAll(".pagination button");
+    pageButtons.forEach((button, index) => {
+      if (index === currentPage) {
+        button.classList.add("active");
+      } else {
+        button.classList.remove("active");
+      }
+    });
+  }
 
   createPageButtons();
   showPage(currentPage);
