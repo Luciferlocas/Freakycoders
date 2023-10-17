@@ -291,7 +291,6 @@ header {
   }
 
   .navbar .links a {
-    display: inline-flex;
     margin: 1.25em 0;
     font-size: 1rem;
   }
