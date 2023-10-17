@@ -15,6 +15,13 @@
   font-size: 16px;
 }
 
+.dark{
+  --bg: #13120c;
+  --primary: #3a6e6c;
+  --secondary: #cbddcb;
+  --text:  #f2f1de;
+}
+
 body {
   background-color: var(--bg);
 }
@@ -123,7 +130,7 @@ header {
 }
 
 .platform h1{
-  font-size: 2rem;
+  font-size: 3rem;
   margin-bottom: 0.4em;
 }
 
@@ -145,6 +152,7 @@ header {
 }
 
 .form{
+  float: right;
   width: 20em;
   border: 2px solid var(--primary);
   display: flex;
@@ -198,6 +206,21 @@ header {
   }
 }
 
+.download{
+  float: right;
+  border: 2px solid var(--primary);
+  border-radius: 1em;
+  font-size: 1.5rem;
+  padding: 0.5em;
+  margin: 2em 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.download:hover{
+  background: var(--primary);
+}
+
 .pagination {
   margin-top: 20px;
 }
@@ -238,29 +261,6 @@ header {
   word-spacing: 2px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @media (max-width: 950px) {
   .navbar :is(.menu-btn, .close-btn) {
     display: block;
@@ -284,8 +284,6 @@ header {
     width: 100%;
     padding-top: 3.75em;
     text-align: center;
-    background: var(--bg);
-    transition: 0.5s ease;
   }
 
   .navbar .links .show-menu {
@@ -296,7 +294,6 @@ header {
     display: inline-flex;
     margin: 1.25em 0;
     font-size: 1rem;
-    color: var(--text);
   }
 
   .navbar .login-btn {
@@ -305,10 +302,10 @@ header {
   }
 
   .platform{
-    margin: 1em 2.4em;
+    margin: 1em 2em;
   }
   .platform h1{
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
 
   #code{
@@ -316,9 +313,41 @@ header {
   }
 
   #code td, #code th {
-    font-size: 0.5rem;
+    font-size: 0.3rem;
     padding: 1em;
-    border: 1px solid var(--primary);
   }
 
+  .greet h1{
+    font-size: 1.5em;
+    line-break: auto;
+    text-align: center;
+  }
+  
+  .explore{
+    display: flex;
+    flex-direction: column;
+    margin-top: 3em ;
+    font-size: 1rem;
+  }
+
+  .practice{
+    font-size: 2rem;
+    padding: 1em 2.2em;
+    margin: 1.5em;
+  }
+
+  .form{
+    width: 15em;
+  }
+  
+  .form input{
+    font-size: 0.5rem;
+    padding: 3px 1em;
+    width: 100%;
+  }
+  
+  .form i{
+    padding-left: 1rem;
+  }
+  
 }
