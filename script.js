@@ -1,29 +1,16 @@
 "use strict";
 
-const navbarMenu1 = document.getElementById("hamNav");
-const navbarMenu2 = document.getElementById("links");
-// console.log(navbarMenu1);
-// console.log(navbarMenu2);
-const menuBtn = document.getElementById("menu-btn");
-const hideMenuBtn = navbarMenu1.getElementById("close-btn");
+// const navbarMenu = document.getElementsByClassName(".navbar .links");
+// const menuBtn = document.getElementsByClassName(".menu-btn");
+// console.log(menuBtn);
+// const hideMenuBtn = document.getElementsByClassName(".close-btn");
 
 // menuBtn.addEventListener("click", () => {
-//   navbarMenu1.classList.toggle("show-menu");
+//   navbarMenu.classList.toggle("show-menu");
 // });
-// navbarMenu1.getElementById("hamNav").addEventListener("click", () => {
-//   navbarMenu1.classList.toggle("show-menu");
-// });
-
-navbarMenu1.querySelector("#hamNav").addEventListener("click", () => {
-  alert("Clicked qs");
-});
 
 // hideMenuBtn.addEventListener("click", () => {
-//   navbarMenu1.classList.toggle("show-menu");
-// });
-
-// document.getElementById("hamNav").addEventListener("click", () => {
-//   alert("Clicked");
+//   navbarMenu.classList.toggle("show-menu");
 // });
 
 // hiding everthing till load-----------------------------------------
@@ -53,14 +40,14 @@ fetch("https://kontests.net/api/v1/all")
       <td><a target = "_blank" href="${values.url}">Register</a></td>
       <td>${values.start_time}</td>
       <td>${values.end_time}</td>
-      <td>${values.duration} s </td>
+      <td>${values.duration}s </td>
       <td>${values.status}</td>
   </tr>`;
     });
     document.getElementById("inform").innerHTML = tableData;
   })
   .catch((err) => {
-    // alert("Error fetching the API");
+    console.log("Error fetching the API");
   });
 
 // downloading the API data table---------------------------------------
@@ -99,10 +86,10 @@ const search = () => {
   const searchbox = document.getElementById("search-name").value.toUpperCase();
   const platforms = document.getElementById("code");
   const information = document.querySelectorAll(".info");
-  const pname = platforms.getElementById("plat");
+  const pname = platforms.getElementsByClassName("plat");
 
   for (var i = 0; i < pname.length; i++) {
-    let match = information[i].getElementById("plat")[0];
+    let match = information[i].getElementsByClassName("plat")[0];
 
     if (match) {
       let textValue = match.textContent || match.innerHTML;
@@ -119,46 +106,52 @@ const search = () => {
 // pagination but not working properly -------------------------------------
 
 document.addEventListener("DOMContentLoaded", function () {
-  // const content = document.querySelector("#code");
-  // console.log(content);
-  // const itemsPerPage = 6;
-  // let currentPage = 0;
-  // const items = Array.from(content.getElementsByTagName("tr")).slice(1);
-  // function showPage(page) {
-  //   const startIndex = page * itemsPerPage;
-  //   const endIndex = startIndex + itemsPerPage;
-  //   items.forEach((item, index) => {
-  //     item.classList.toggle("hidden", index < startIndex || index >= endIndex);
-  //   });
-  //   updateActiveButtonStates();
-  // }
-  // function createPageButtons() {
-  //   const totalPages = Math.ceil(items.length / itemsPerPage);
-  //   const paginationContainer = document.createElement("div");
-  //   const paginationDiv = document.body.appendChild(paginationContainer);
-  //   paginationContainer.classList.add("pagination");
-  //   for (let i = 0; i < totalPages; i++) {
-  //     const pageButton = document.createElement("button");
-  //     pageButton.textContent = i + 1;
-  //     pageButton.addEventListener("click", () => {
-  //       currentPage = i;
-  //       showPage(currentPage);
-  //       updateActiveButtonStates();
-  //     });
-  //     content.appendChild(paginationContainer);
-  //     paginationDiv.appendChild(pageButton);
-  //   }
-  // }
-  // function updateActiveButtonStates() {
-  //   const pageButtons = document.querySelectorAll(".pagination button");
-  //   pageButtons.forEach((button, index) => {
-  //     if (index === currentPage) {
-  //       button.classList.add("active");
-  //     } else {
-  //       button.classList.remove("active");
-  //     }
-  //   });
-  // }
-  // createPageButtons();
-  // showPage(currentPage);
+  const content = document.querySelector("#code");
+  console.log(content);
+  const itemsPerPage = 6;
+  let currentPage = 0;
+  const items = Array.from(content.getElementsByTagName("tr")).slice(1);
+
+  function showPage(page) {
+    const startIndex = page * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    items.forEach((item, index) => {
+      item.classList.toggle("hidden", index < startIndex || index >= endIndex);
+    });
+    updateActiveButtonStates();
+  }
+
+  function createPageButtons() {
+    const totalPages = Math.ceil(items.length / itemsPerPage);
+    const paginationContainer = document.createElement("div");
+    const paginationDiv = document.body.appendChild(paginationContainer);
+    paginationContainer.classList.add("pagination");
+
+    for (let i = 0; i < totalPages; i++) {
+      const pageButton = document.createElement("button");
+      pageButton.textContent = i + 1;
+      pageButton.addEventListener("click", () => {
+        currentPage = i;
+        showPage(currentPage);
+        updateActiveButtonStates();
+      });
+
+      content.appendChild(paginationContainer);
+      paginationDiv.appendChild(pageButton);
+    }
+  }
+
+  function updateActiveButtonStates() {
+    const pageButtons = document.querySelectorAll(".pagination button");
+    pageButtons.forEach((button, index) => {
+      if (index === currentPage) {
+        button.classList.add("active");
+      } else {
+        button.classList.remove("active");
+      }
+    });
+  }
+
+  createPageButtons();
+  showPage(currentPage);
 });

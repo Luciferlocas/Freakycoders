@@ -349,5 +349,11 @@ header {
   .form i{
     padding-left: 1rem;
   }
+
+  .download{
+    font-size: 0.75rem;
+    padding: 0.5em;
+    margin: 2em 0;
+  }
   
 }
