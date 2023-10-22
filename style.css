@@ -351,4 +351,10 @@ button{
     margin: 2em 0;
   }
   
+  #prevButton, #nextButton{
+    width: 6em;
+    font-size: 0.5rem;
+    padding: 0.2em;
+    margin: 1em 0;
+  }
 }
