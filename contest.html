@@ -7,7 +7,6 @@
     <title>Freakycoders</title>
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="img/icon.ico" type="image/x-icon">
-    <script src="script.js"></script>
     <script src="https://kit.fontawesome.com/f57def13fc.js" crossorigin="anonymous"></script>
 </head>
 
@@ -35,7 +34,7 @@
             <h1>Competitions : </h1>
             <form class="form">
                 <i class="fas fa-search"></i>
-                <input type="text" name="" id="search-name" placeholder="Search platform" onkeyup="search()">
+                <input type="text" name="" id="search-name" placeholder="Search name" onkeyup="search()">
             </form>
         </div>
         <br>
@@ -44,10 +43,10 @@
             <table id="code">
                 <thead>
                     <tr>
-                        <th>Platform</th>
-                        <th>Name</th>
+                        <th>Platform <button data-sort="site">Sort</button></th>
+                        <th>Name <button data-sort="name">Sort</button></th>
                         <th>Register</th>
-                        <th>Start time</th>
+                        <th >Start time <button data-sort="start_time">Sort</button></th>
                         <th>End time</th>
                         <th>Duration</th>
                         <th>Status</th>
@@ -66,8 +65,12 @@
                 </tbody>
 
             </table>
+            <div class="pagebuttons">
+                <button id="prevButton"> < Previous </button>
+            <button id="nextButton">Next ></button>
+            </div>
         </div>
-        <button class="download" onclick="htmlToCsv('data.csv')">Download Information</button>
+        <button class="download" onclick="htmlToCsv('Contest_Information.csv')">Download Information</button>
     </div>
-
+    <script src="script.js"></script>
 </body>

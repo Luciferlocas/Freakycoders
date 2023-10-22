@@ -1,19 +1,77 @@
-"use strict";
+//fetching the data fromt he API--------------------------------------
 
-// const navbarMenu = document.getElementsByClassName(".navbar .links");
-// const menuBtn = document.getElementsByClassName(".menu-btn");
-// console.log(menuBtn);
-// const hideMenuBtn = document.getElementsByClassName(".close-btn");
+document.addEventListener("DOMContentLoaded", init, false);
 
-// menuBtn.addEventListener("click", () => {
-//   navbarMenu.classList.toggle("show-menu");
-// });
+let data, table, sortCol;
+let sortAsc = false;
+const pageSize = 5;
+let curPage = 1;
 
-// hideMenuBtn.addEventListener("click", () => {
-//   navbarMenu.classList.toggle("show-menu");
-// });
+async function init() {
+  table = document.querySelector("#code tbody");
+  let resp = await fetch("https://kontests.net/api/v1/all");
+  data = await resp.json();
+  renderTable();
 
-// hiding everthing till load-----------------------------------------
+  document.querySelectorAll("#code thead tr th").forEach((t) => {
+    t.addEventListener("click", sort, false);
+  });
+
+  document
+    .querySelector("#nextButton")
+    .addEventListener("click", nextPage, false);
+  document
+    .querySelector("#prevButton")
+    .addEventListener("click", previousPage, false);
+}
+
+function renderTable() {
+  let result = "";
+  data
+    .filter((row, index) => {
+      let start = (curPage - 1) * pageSize;
+      let end = curPage * pageSize;
+      if (index >= start && index < end) return true;
+    })
+    .forEach((c) => {
+      result += `<tr class="info">
+      <td>${c.site}</td>
+      <td class="plat">${c.name}</td>
+      <td><a target = "_blank" href="${c.url}">Register</a></td>
+      <td>${c.start_time.slice(0, 10)}</td>
+      <td>${c.end_time.slice(0, 10)}</td>
+      <td>${c.duration}s </td>
+      <td>${c.status}</td>
+  </tr>`;
+    });
+  table.innerHTML = result;
+}
+
+//sorting -----------------------------------------------------------
+
+function sort(e) {
+  let thisSort = e.target.dataset.sort;
+  if (sortCol === thisSort) sortAsc = !sortAsc;
+  sortCol = thisSort;
+  data.sort((a, b) => {
+    if (a[sortCol] < b[sortCol]) return sortAsc ? 1 : -1;
+    if (a[sortCol] > b[sortCol]) return sortAsc ? -1 : 1;
+    return 0;
+  });
+  renderTable();
+}
+
+function previousPage() {
+  if (curPage > 1) curPage--;
+  renderTable();
+}
+
+function nextPage() {
+  if (curPage * pageSize < data.length) curPage++;
+  renderTable();
+}
+
+//loader -----------------------------------------------------------------
 
 document.onreadystatechange = function () {
   if (document.readyState !== "complete") {
@@ -25,36 +83,11 @@ document.onreadystatechange = function () {
   }
 };
 
-// fetching API and extracting data from it----------------------------
-
-fetch("https://kontests.net/api/v1/all")
-  .then((res) => {
-    return res.json();
-  })
-  .then((data) => {
-    let tableData = "";
-    data.map((values) => {
-      tableData += `<tr class="info">
-      <td class="plat">${values.site}</td>
-      <td>${values.name}</td>
-      <td><a target = "_blank" href="${values.url}">Register</a></td>
-      <td>${values.start_time}</td>
-      <td>${values.end_time}</td>
-      <td>${values.duration}s </td>
-      <td>${values.status}</td>
-  </tr>`;
-    });
-    document.getElementById("inform").innerHTML = tableData;
-  })
-  .catch((err) => {
-    console.log("Error fetching the API");
-  });
-
-// downloading the API data table---------------------------------------
+//file download ----------------------------------------------------------
 
 function htmlToCsv(filename) {
   var data = [];
-  var rows = document.querySelectorAll("table tr");
+  var rows = document.querySelectorAll("tr");
 
   for (var i = 0; i < rows.length; i++) {
     var row = [],
@@ -80,7 +113,7 @@ function downloadCSVFile(csv, filename) {
   download_link.click();
 }
 
-// making search enable for the competitions------------------------------
+// searching ----------------------------------------------------------------
 
 const search = () => {
   const searchbox = document.getElementById("search-name").value.toUpperCase();
@@ -102,56 +135,3 @@ const search = () => {
     }
   }
 };
-
-// pagination but not working properly -------------------------------------
-
-document.addEventListener("DOMContentLoaded", function () {
-  const content = document.querySelector("#code");
-  console.log(content);
-  const itemsPerPage = 6;
-  let currentPage = 0;
-  const items = Array.from(content.getElementsByTagName("tr")).slice(1);
-
-  function showPage(page) {
-    const startIndex = page * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    items.forEach((item, index) => {
-      item.classList.toggle("hidden", index < startIndex || index >= endIndex);
-    });
-    updateActiveButtonStates();
-  }
-
-  function createPageButtons() {
-    const totalPages = Math.ceil(items.length / itemsPerPage);
-    const paginationContainer = document.createElement("div");
-    const paginationDiv = document.body.appendChild(paginationContainer);
-    paginationContainer.classList.add("pagination");
-
-    for (let i = 0; i < totalPages; i++) {
-      const pageButton = document.createElement("button");
-      pageButton.textContent = i + 1;
-      pageButton.addEventListener("click", () => {
-        currentPage = i;
-        showPage(currentPage);
-        updateActiveButtonStates();
-      });
-
-      content.appendChild(paginationContainer);
-      paginationDiv.appendChild(pageButton);
-    }
-  }
-
-  function updateActiveButtonStates() {
-    const pageButtons = document.querySelectorAll(".pagination button");
-    pageButtons.forEach((button, index) => {
-      if (index === currentPage) {
-        button.classList.add("active");
-      } else {
-        button.classList.remove("active");
-      }
-    });
-  }
-
-  createPageButtons();
-  showPage(currentPage);
-});

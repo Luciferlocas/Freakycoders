@@ -221,31 +221,6 @@ header {
   background: var(--primary);
 }
 
-.pagination {
-  margin-top: 20px;
-}
-
-.pagination button {
-  padding: 0.5em 0.75em;
-  margin: 0 1em;
-  cursor: pointer;
-  outline: 1px solid var(--secondary);
-  border-radius: 5px;
-  border: none;
-}
-
-.hidden {
-  height: 1px;
-  overflow: hidden;
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
-}
-
-.pagination button.active {
-  background-color: var(--primary);
-}
-
 .motive{
   color: var(--primary);
   text-align: center;
@@ -259,6 +234,27 @@ header {
   text-align: center;
   padding-top: 1em;
   word-spacing: 2px;
+}
+
+button{
+  cursor: pointer;
+}
+
+.pagebuttons{
+  display: flex;
+  justify-content: center;
+  gap: 2em;
+}
+
+#prevButton, #nextButton{
+  width: 6em;
+  border: 2px solid var(--primary);
+  border-radius: 1em;
+  font-size: 1rem;
+  padding: 0.5em;
+  margin: 2em 0;
+  background: var(--secondary);
+  cursor: pointer;
 }
 
 @media (max-width: 950px) {
